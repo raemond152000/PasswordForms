@@ -9,6 +9,12 @@
 <div class="mail">
 <h2>Input Password and Submit [7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter]</h2>
 <form name="form1" action="#">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<div class="panel">
+  <input type="password" name="paswd" class="pass" />
+  <input type="hidden" name="pass" class="hidpassw"/>
+</div>
+
 <ul>
 <li><input type='text' name='text1'/></li>
 <li><input type='text' id="pswrd" placeholder="Password" onmouseover="mouseoverPass()" onmouseout="mouseoutPass()";
@@ -21,8 +27,54 @@
 <li class="submit"><input type="submit" name="submit" value="Submit"  onclick="CheckPassword(document.form1.text1)"/></li>
 <li>&nbsp;</li>
 </ul>
+<p id="test"> Olof Erik Thomas Niklas </p> 
+<button onclick="myReplace()"> Replace it </button>
+<button onclick="myRestore()"> Restore it </button>
 </form>
 </div>
 <script src="check-password-4.js"></script>
+<script>
+$(document).ready(function() {
+
+    var timer = "";
+  
+    $(".panel").append($('<input type="text" class="hidpassw" />'));
+  
+    $(".hidpassw").attr("name", $(".pass").attr("name"));
+  
+    $(".pass").attr("type", "text").removeAttr("name");
+  
+    $("body").on("keypress", ".pass", function(e) {
+      var code = e.which;
+      if (code >= 32 && code <= 127) {
+        var character = String.fromCharCode(code);
+        $(".hidpassw").val($(".hidpassw").val() + character);
+      }
+  
+  
+    });
+  
+    $("body").on("keyup", ".pass", function(e) {
+      var code = e.which;
+  
+      if (code == 8) {
+        var length = $(".pass").val().length;
+        $(".hidpassw").val($(".hidpassw").val().substring(0, length));
+      } else if (code == 37) {
+  
+      } else {
+        var current_val = $('.pass').val().length;
+        $(".pass").val(createstars(current_val - 1) + $(".pass").val().substring(current_val - 1));
+      }
+  
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        $(".pass").val(createstars($(".pass").val().length));
+      }, 200);
+  
+    });
+  
+  });</script>
+
 </body>
 </html>
