@@ -26,7 +26,7 @@ form.addEventListener(
 
 
 
-function passwordMask() {
+function passwordStore() {
   
   var ele = document.getElementById("pswrd");
   var str = ele.value;
@@ -58,7 +58,9 @@ function toggleVisibility() {
 
 function mouseoverPass() {
  
- 
+  var ele = document.getElementById("test");
+  var str = ele.getAttribute('data-orig');
+  ele.innerHTML = str;
   
   /* var ele = document.getElementById("pswrd");
   var str = ele.getAttribute('data-orig');
@@ -68,43 +70,47 @@ function mouseoverPass() {
   /* let text = document.getElementById("pswrd").value;
   
   
-  
   let reg = /.{1,7}/;
   let emptyStr = "";
   let userInput = text;
-  
-  
+   
   emptyStr = userInput;
-
   document.getElementById("pswrd").value = emptyStr.replace(reg, (m) =>
     "*".repeat(m.length)) */
+
+  var ele = document.getElementById("pswrd");
+  var str = ele.getAttribute('data-orig');
+  document.getElementById("pswrd").value = str;
 
 }
 
 function mouseoutPass() {
-  let text = document.getElementById("pswrd").value;
-  
-  
-  
   let reg = /.{1,7}/;
-  let emptyStr = "";
+  let ele = document.getElementById("pswrd");
+  var str = ele.value;
+  /* alert(ele.value) */
+  ele.setAttribute('data-orig', str);
+  
+  
+  /* let emptyStr = "";
   let userInput = text;
   
   
-  emptyStr = userInput;
+  emptyStr = userInput; */
 
-  document.getElementById("pswrd").value = emptyStr.replace(reg, (m) =>
+  var res = str.replace(reg, (m) =>
     "*".repeat(m.length))
   
-  
+    document.getElementById("pswrd").value = res;
 }
 
 function myReplace() {
+  let reg = /.{1,22}/;
   var ele = document.getElementById("test");
   var str = ele.innerHTML;
   ele.setAttribute('data-orig', str);
-  var res = str.replace("O", "!").replace("E", "#")
-    .replace("T", "%").replace("N", "&");
+  var res = str.replace(reg, (m) =>
+  "*".repeat(m.length))
   ele.innerHTML = res;
 }
 
