@@ -1,134 +1,183 @@
-//To check a password between 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-let form = document.getElementById("form1");
-let myPassword = {};
 
-function CheckPassword(inputtxt) {
-  var decimal =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-  if (inputtxt.value.match(decimal)) {
-    alert("Correct, try another...");
-    return true;
-  } else {
-    alert("Wrong...!");
-    return false;
-  }
+let form = document.getElementById("form1");
+
+//creates a delay to correct input elements
+function mask(o, f) {
+  setTimeout(function () {
+      var v = f(o.value);
+      if (v != o.value) {
+          o.value = v;
+      }
+  }, 1);
 }
 
-form.addEventListener(
+//formats sin number
+function numHyphen(v) {
+  var r = v.replace(/\D/g,""); //sanitize non numeric characters
+  
+  if (r.length > 9) {
+      r = r.replace(/^(\d\d\d)(\d{2})(\d{0,4}).*/,"$1-$2-$3");
+  return r;
+  }
+  else if (r.length > 4) {
+      r = r.replace(/^(\d\d\d)(\d{2})(\d{0,4}).*/,"$1-$2-$3");
+  }
+  else if (r.length > 2) {
+      r = r.replace(/^(\d\d\d)(\d{0,3})/,"$1-$2");
+  }
+  else {
+      r = r.replace(/^(\d*)/, "$1");
+  }
+  
+  return r;
+}
+/* // SIN input valdation restricts input for the given textbox to the given inputFilter.
+function setInputFilter(textbox, inputFilter, errMsg) {
+  [
+    "input",
+    "keydown",
+    "keyup",
+    "mousedown",
+    "mouseup",
+    "select",
+    "contextmenu",
+    "drop",
+    "focusout",
+  ].forEach(function (event) {
+    textbox.addEventListener(event, function (e) {
+      if (inputFilter(this.value)) {
+        // Accepted value
+        if (["keydown", "mousedown", "focusout"].indexOf(e.type) >= 0) {
+          this.classList.remove("input-error");
+          this.setCustomValidity("");
+        }
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        // Rejected value - restore the previous one
+        this.classList.add("input-error");
+        this.setCustomValidity(errMsg);
+        this.reportValidity();
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        // Rejected value - nothing to restore
+        this.value = "";
+      }
+    });
+  })
+}
+
+// Install input filters. 
+setInputFilter(
+  document.getElementById("sin"),
+  function (value) {
+    return /^[\d-]+$/.test(value);  //allows number and hyphen symbol masked by function numHyphen
+  },
+  "Must be a number"
+); */
+
+/* form.addEventListener(
   "focus",
   function (event) {
     event.target.style.background = "lightblue";
-    
   },
 
   true
-);
-
-
+); */
 
 function sinStore() {
-  
-  var ele = document.getElementById("pswrd");
+  var ele = document.getElementById("sin");
   var str = ele.value;
-  let text = document.getElementById("pswrd").value;
-  /* ele.setAttribute('data-orig', str);
-  
-  
-  let reg = /.{1,7}/;
-  let emptyStr = "";
-  let userInput = text;
-  
-  
-  emptyStr = userInput;
-
-  document.getElementById("pswrd").value = emptyStr.replace(reg, (m) =>
-    "*".repeat(m.length)
-  ); */
+  let text = document.getElementById("sin").value;
   
 }
 
 function toggleVisibility() {
-  var getPasword = document.getElementById("pswrd");
+  var getPasword = document.getElementById("sin");
   if (getPasword.type === "password") {
     getPasword.type = "text";
   } else {
     getPasword.type = "password";
   }
 }
-
 function mouseoverPass() {
- 
-  var ele = document.getElementById("test");
-  var str = ele.getAttribute('data-orig');
-  ele.innerHTML = str;
+  var ele = document.getElementById("sin");
+  var str = ele.getAttribute("data-orig");
+  ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3");
+  console.log(ele.value);
   
-  /* var ele = document.getElementById("pswrd");
-  var str = ele.getAttribute('data-orig');
-  ele.value = str;
-  document.getElementById("demo").innerText = str; */
-
-  /* let text = document.getElementById("pswrd").value;
-  
-  
-  let reg = /.{1,7}/;
-  let emptyStr = "";
-  let userInput = text;
-   
-  emptyStr = userInput;
-  document.getElementById("pswrd").value = emptyStr.replace(reg, (m) =>
-    "*".repeat(m.length)) */
-
-  var ele = document.getElementById("pswrd");
-  var str = ele.getAttribute('data-orig');
-  document.getElementById("pswrd").value = str;
-
 }
+
 
 function mouseoutPass() {
   let reg = /.{1,7}/;
-  let ele = document.getElementById("pswrd");
-  var str = ele.value;
-  /* alert(ele.value) */
-  ele.setAttribute('data-orig', str);
-  
-  
-  /* let emptyStr = "";
-  let userInput = text;
-  
-  
-  emptyStr = userInput; */
+  let ele = document.getElementById("sin");
+  var str = ele.value.replace(/-/g, "");
 
-  var res = str.replace(reg, (m) =>
-    "*".repeat(m.length))
-  
-    document.getElementById("pswrd").value = res;
+  ele.setAttribute("data-orig", str); 
+
+  var res = str.replace(reg, (m) => "*".repeat(m.length));
+
+  document.getElementById("sin").value = res;
 }
 
 function myReplace() {
   let reg = /.{1,22}/;
   var ele = document.getElementById("test");
-  var str = ele.innerHTML;
-  ele.setAttribute('data-orig', str);
-  var res = str.replace(reg, (m) =>
-  "*".repeat(m.length))
+  /* var str = ele.value; */
+  ele.setAttribute("data-orig", str);
+  var res = str.replace(reg, (m) => "*".repeat(m.length));
   ele.innerHTML = res;
 }
 
 function myRestore() {
-  var ele = document.getElementById("test");
-  var str = ele.getAttribute('data-orig');
-  ele.innerHTML = str;
+  var ele = document.getElementById("sin");
+  var str = ele.getAttribute("data-orig").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");;
+  ele.value = str;
+  /* var ele = document.getElementById("sin"); */
+  var str = ele.getAttribute("data-orig").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+  ele.value = str.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
 }
 
 /* let reg = /.{1,5}/
 let string = '123456789';
 let string2 = '123';
 console.log(string.replace(reg, (m) => "X".repeat(m.length))); */
-function createstars(n) {
+
+/* function createstars(n) {
   return new Array(n+1).join("*")
 }
 
-/* function validateSinNumber(sinNumber) {
+function setInputFilter(textbox, inputFilter, errMsg) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
+    textbox.addEventListener(event, function(e) {
+      if (inputFilter(this.value)) {
+        // Accepted value
+        if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+          this.classList.remove("input-error");
+          this.setCustomValidity("");
+        }
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        // Rejected value - restore the previous one
+        this.classList.add("input-error");
+        this.setCustomValidity(errMsg);
+        this.reportValidity();
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        // Rejected value - nothing to restore
+        this.value = "";
+      }
+    });
+  });
+}
+ */
+function validateSinNumber(sinNumber) {
   // Remove any non-digit characters from the SIN
   sinNumber = sinNumber.replace(/\D/g, '');
 
@@ -151,7 +200,7 @@ function createstars(n) {
 
   // Check if the sum is divisible by 10
   return sum % 10 === 0;
-} */
+}
 
 
 /* $(document).ready(function() {
