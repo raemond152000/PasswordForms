@@ -87,7 +87,7 @@ setInputFilter(
   true
 ); */
 
-function sinStore() {
+/* function sinStore() {
   var ele = document.getElementById("sin");
   var str = ele.value;
   let text = document.getElementById("sin").value;
@@ -101,7 +101,7 @@ function toggleVisibility() {
   } else {
     getPasword.type = "password";
   }
-}
+} */
 function mouseoverPass() {
   var ele = document.getElementById("sin");
   var str = ele.getAttribute("data-orig");
@@ -112,16 +112,27 @@ function mouseoverPass() {
 
 
 function mouseoutPass() {
+  document.getElementById("sin").addEventListener('mousemove', function(event) {
+    event.preventDefault();
+  }, false);
   let reg = /.{1,7}/;
   let ele = document.getElementById("sin");
   var str = ele.value.replace(/-/g, "");
-
+  
   ele.setAttribute("data-orig", str); 
 
   var res = str.replace(reg, (m) => "*".repeat(m.length));
 
   document.getElementById("sin").value = res;
+
+  
 }
+//Prevents user to edit through the sin number through mouse drag to highlight the form *user needs to use backspace to edit
+ 
+document.querySelector('[name="form1"]').addEventListener('mousemove', function(event) {
+  event.preventDefault();
+}, false);
+
 
 /* function myReplace() {
   let reg = /.{1,22}/;
