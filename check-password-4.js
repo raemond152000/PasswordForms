@@ -123,10 +123,10 @@ function mouseoutPass() {
   document.getElementById("sin").value = res;
 }
 
-function myReplace() {
+/* function myReplace() {
   let reg = /.{1,22}/;
   var ele = document.getElementById("test");
-  /* var str = ele.value; */
+  
   ele.setAttribute("data-orig", str);
   var res = str.replace(reg, (m) => "*".repeat(m.length));
   ele.innerHTML = res;
@@ -136,10 +136,10 @@ function myRestore() {
   var ele = document.getElementById("sin");
   var str = ele.getAttribute("data-orig").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");;
   ele.value = str;
-  /* var ele = document.getElementById("sin"); */
+  
   var str = ele.getAttribute("data-orig").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
   ele.value = str.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
-}
+} */
 
 /* let reg = /.{1,5}/
 let string = '123456789';
@@ -177,7 +177,7 @@ function setInputFilter(textbox, inputFilter, errMsg) {
   });
 }
  */
-function validateSinNumber(sinNumber) {
+/* function validateSinNumber(sinNumber) {
   // Remove any non-digit characters from the SIN
   sinNumber = sinNumber.replace(/\D/g, '');
 
@@ -200,7 +200,7 @@ function validateSinNumber(sinNumber) {
 
   // Check if the sum is divisible by 10
   return sum % 10 === 0;
-}
+} */
 
 
 /* $(document).ready(function() {
