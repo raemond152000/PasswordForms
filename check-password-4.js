@@ -26,7 +26,7 @@ form.addEventListener(
 
 
 
-function passwordStore() {
+function sinStore() {
   
   var ele = document.getElementById("pswrd");
   var str = ele.value;

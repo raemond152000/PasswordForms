@@ -10,15 +10,15 @@
 <h2>Input Password and Submit [7 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter]</h2>
 <form name="form1" action="#">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<div class="panel">
+<!-- <div class="panel">
   <input type="password" name="paswd" class="pass" />
   <input type="hidden" name="pass" class="hidpassw"/>
-</div>
+</div> -->
 
 <ul>
-<li><input type='text' name='text1'/></li>
-<li><input type='text' id="pswrd" placeholder="Password" onmouseover="mouseoverPass()" onmouseout="mouseoutPass()";
-    oninput="passwordStore()" name='text2' maxlength="9"/></li>
+
+<li><input type='text' id="pswrd" placeholder="SIN" onmouseover="mouseoverPass()" onmouseout="mouseoutPass()";
+    oninput="sinStore()" name='text2' maxlength="9"/></li>
 <input type="checkbox" onclick="toggleVisibility()"/>Show Password</br>
 <li class="rq">*Enter numbers only.</li>
 
@@ -33,7 +33,7 @@
 </form>
 </div>
 <script src="check-password-4.js"></script>
-<script>
+<!-- <script>
 $(document).ready(function() {
 
     var timer = "";
@@ -74,7 +74,7 @@ $(document).ready(function() {
   
     });
   
-  });</script>
+  });</script> -->
 
 </body>
 </html>
