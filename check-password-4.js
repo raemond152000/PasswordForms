@@ -128,6 +128,31 @@ function createstars(n) {
   return new Array(n+1).join("*")
 }
 
+/* function validateSinNumber(sinNumber) {
+  // Remove any non-digit characters from the SIN
+  sinNumber = sinNumber.replace(/\D/g, '');
+
+  // Check if the SIN is the correct length
+  if (sinNumber.length !== 9) {
+    return false;
+  }
+
+  // Convert the SIN string to an array of digits
+  var sinDigits = sinNumber.split('').map(Number);
+
+  // Calculate the sum of the digits at odd positions (1, 3, 5, 7)
+  var sum = sinDigits[0] + sinDigits[2] + sinDigits[4] + sinDigits[6];
+
+  // Double the value of each digit at even positions (0, 2, 4, 6) and sum their digits
+  for (var i = 1; i <= 7; i += 2) {
+    var doubledDigit = sinDigits[i] * 2;
+    sum += Math.floor(doubledDigit / 10) + (doubledDigit % 10);
+  }
+
+  // Check if the sum is divisible by 10
+  return sum % 10 === 0;
+} */
+
 
 /* $(document).ready(function() {
 
