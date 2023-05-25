@@ -5,7 +5,7 @@
 <title>JavaScript form validation - Password Checking - 1</title>
 <link rel='stylesheet' href='form-style.css' type='text/css' />
 </head>
-<body onload='document.form1.text1.focus()'>
+<body onload='document.form1.text1'>
 <div class="mail">
 <h2>Input SIN 9 characters which contain only numeric digits</h2>
 <form name="form1" action="#">
@@ -17,64 +17,22 @@
 
 <ul>
 
-<li><input type='text' id="pswrd" placeholder="SIN" onmouseover="mouseoverPass()" onmouseout="mouseoutPass()";
-    oninput="sinStore()" name='text2' maxlength="9"/></li>
-<input type="checkbox" onclick="toggleVisibility()"/>Show Password</br>
+<li><input type='text' id="sin" placeholder="SSN 123-45-6789" onmouseover="mouseoverPass()" onmouseout="mouseoutPass()";
+     onkeyup='mask(this, numHyphen);' onblur='mask(this, numHyphen)' name='text2' maxlength="11"/></li>
+<!-- <input type="checkbox"/>Show Password</br>
 <li class="rq">*Enter numbers only.</li>
 
-<p id="demo"></p>
+<p id="demo"></p> -->
 <li>&nbsp;</li>
-<li class="submit"><input type="submit" name="submit" value="Submit"  onclick="CheckPassword(document.form1.text1)"/></li>
+<!-- <li class="submit"><input type="submit" name="submit" value="Submit"  onclick="CheckPassword(document.form1.text1)"/></li> -->
 <li>&nbsp;</li>
 </ul>
-<p id="test"> Olof Erik Thomas Niklas </p> 
-<button onclick="myReplace()"> Replace it </button>
-<button onclick="myRestore()"> Restore it </button>
+
+
 </form>
 </div>
-<script src="check-password-4.js"></script>
-<!-- <script>
-$(document).ready(function() {
 
-    var timer = "";
-  
-    $(".panel").append($('<input type="text" class="hidpassw" />'));
-  
-    $(".hidpassw").attr("name", $(".pass").attr("name"));
-  
-    $(".pass").attr("type", "text").removeAttr("name");
-  
-    $("body").on("keypress", ".pass", function(e) {
-      var code = e.which;
-      if (code >= 32 && code <= 127) {
-        var character = String.fromCharCode(code);
-        $(".hidpassw").val($(".hidpassw").val() + character);
-      }
-  
-  
-    });
-  
-    $("body").on("keyup", ".pass", function(e) {
-      var code = e.which;
-  
-      if (code == 8) {
-        var length = $(".pass").val().length;
-        $(".hidpassw").val($(".hidpassw").val().substring(0, length));
-      } else if (code == 37) {
-  
-      } else {
-        var current_val = $('.pass').val().length;
-        $(".pass").val(createstars(current_val - 1) + $(".pass").val().substring(current_val - 1));
-      }
-  
-      clearTimeout(timer);
-      timer = setTimeout(function() {
-        $(".pass").val(createstars($(".pass").val().length));
-      }, 200);
-  
-    });
-  
-  });</script> -->
 
 </body>
+<script src="check-password-4.js"></script>
 </html>
