@@ -31,7 +31,7 @@ function numHyphen(v) {
   
   return r;
 }
-/* // SIN input valdation restricts input for the given textbox to the given inputFilter.
+// SIN input valdation restricts input for the given textbox to the given inputFilter.
 function setInputFilter(textbox, inputFilter, errMsg) {
   [
     "input",
@@ -70,13 +70,13 @@ function setInputFilter(textbox, inputFilter, errMsg) {
 }
 
 // Install input filters. 
-setInputFilter(
+setInputFilter(               
   document.getElementById("sin"),
   function (value) {
-    return /^[\d-]+$/.test(value);  //allows number and hyphen symbol masked by function numHyphen
+    return /^[\d-*\s]*$/.test(value);   // regex allows null, number, hyphen, and asterisk symbol masked by function numHyphen so it won't trigger error message
   },
   "Must be a number"
-); */
+);
 
 /* form.addEventListener(
   "focus",
@@ -87,27 +87,22 @@ setInputFilter(
   true
 ); */
 
-/* function sinStore() {
-  var ele = document.getElementById("sin");
-  var str = ele.value;
-  let text = document.getElementById("sin").value;
-  
-}
 
-function toggleVisibility() {
+
+/* function toggleVisibility() {
   var getPasword = document.getElementById("sin");
   if (getPasword.type === "password") {
     getPasword.type = "text";
   } else {
     getPasword.type = "password";
   }
-} */
+}  */
 function onclickToggle(event) {
   var ele = document.getElementById("sin");
   var str = ele.getAttribute("data-orig");
-  if (ele.value.split("*").length-1  === 7) {
+  //if (ele.value.split("*").length-1  === 7) {
     ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3");
-  } 
+  //} 
   /* ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3"); */
   console.log(ele.value);
   event.preventDefault();
@@ -119,21 +114,19 @@ function mouseoutMask() {
  /*  document.getElementById("sin").addEventListener('mousemove', function(event) {
     event.preventDefault();
   }, false); */
-  let reg = /.{1,7}/;
-  let ele = document.getElementById("sin");
-  var str = ele.value.replace(/-/g, "");
   
+  let ele = document.getElementById("sin");
+  let str = ele.value.replace(/-/g, "");
+  let reg = str.slice(0, -2);
   ele.setAttribute("data-orig", str); 
-   if (str.length  === 9) { 
+   //if (str.length  === 9) { 
     var res = str.replace(reg, (m) => "*".repeat(m.length));
     document.getElementById("sin").value = res;
-} 
- 
-
-  
+//}  
 
   
 }
+
 //Prevents user to edit through the sin number through mouse drag to highlight the form *user needs to use backspace to edit
  
 /* document.querySelector('[name="form1"]').addEventListener('mousemove', function(event) {
