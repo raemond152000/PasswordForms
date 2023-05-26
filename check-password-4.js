@@ -102,12 +102,12 @@ function toggleVisibility() {
     getPasword.type = "password";
   }
 } */
-function mouseoverPass(event) {
+function onclickToggle(event) {
   var ele = document.getElementById("sin");
   var str = ele.getAttribute("data-orig");
-/*   if (ele.value.split("*").length - 1 === 7) { */
+  if (ele.value.split("*").length-1  === 7) {
     ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3");
-  /* } */
+  } 
   /* ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3"); */
   console.log(ele.value);
   event.preventDefault();
@@ -115,7 +115,7 @@ function mouseoverPass(event) {
 }
 
 
-function mouseoutPass() {
+function mouseoutMask() {
  /*  document.getElementById("sin").addEventListener('mousemove', function(event) {
     event.preventDefault();
   }, false); */
@@ -136,9 +136,9 @@ function mouseoutPass() {
 }
 //Prevents user to edit through the sin number through mouse drag to highlight the form *user needs to use backspace to edit
  
-document.querySelector('[name="form1"]').addEventListener('mousemove', function(event) {
+/* document.querySelector('[name="form1"]').addEventListener('mousemove', function(event) {
   event.preventDefault();
-}, false);
+}, false); */
 
 
 /* function myReplace() {
