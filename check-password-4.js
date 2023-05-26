@@ -102,7 +102,7 @@ function toggleVisibility() {
     getPasword.type = "password";
   }
 } */
-function mouseoverPass() {
+function mouseoverPass(event) {
   var ele = document.getElementById("sin");
   var str = ele.getAttribute("data-orig");
 /*   if (ele.value.split("*").length - 1 === 7) { */
@@ -110,6 +110,7 @@ function mouseoverPass() {
   /* } */
   /* ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3"); */
   console.log(ele.value);
+  event.preventDefault();
   
 }
 
@@ -123,10 +124,13 @@ function mouseoutPass() {
   var str = ele.value.replace(/-/g, "");
   
   ele.setAttribute("data-orig", str); 
+   if (str.length  === 9) { 
+    var res = str.replace(reg, (m) => "*".repeat(m.length));
+    document.getElementById("sin").value = res;
+} 
+ 
 
-  var res = str.replace(reg, (m) => "*".repeat(m.length));
-
-  document.getElementById("sin").value = res;
+  
 
   
 }
