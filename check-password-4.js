@@ -105,16 +105,19 @@ function toggleVisibility() {
 function mouseoverPass() {
   var ele = document.getElementById("sin");
   var str = ele.getAttribute("data-orig");
-  ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3");
+/*   if (ele.value.split("*").length - 1 === 7) { */
+    ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3");
+  /* } */
+  /* ele.value = str.replace(/(\d{3})(\d{2})(\d{4})/, "$1-$2-$3"); */
   console.log(ele.value);
   
 }
 
 
 function mouseoutPass() {
-  document.getElementById("sin").addEventListener('mousemove', function(event) {
+ /*  document.getElementById("sin").addEventListener('mousemove', function(event) {
     event.preventDefault();
-  }, false);
+  }, false); */
   let reg = /.{1,7}/;
   let ele = document.getElementById("sin");
   var str = ele.value.replace(/-/g, "");
