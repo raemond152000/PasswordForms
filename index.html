@@ -10,21 +10,18 @@
 <h2>Input SIN 9 characters which contain only numeric digits</h2>
 <form name="form1" action="#">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- <div class="panel">
-  <input type="password" name="paswd" class="pass" />
-  <input type="hidden" name="pass" class="hidpassw"/>
-</div> -->
+
 
 <ul>
 
-<li><input type='text' id="sin" placeholder="SIN 123-45-6789" onclick="onclickToggle()" onmouseout="mouseoutMask()";
+<li><input type='text' id="sin" placeholder="SIN 123-45-6789" onclick="onclickToggle()" onblur="mouseoutMask()";
      onkeyup='mask(this, numHyphen);'   maxlength="11"/></li>
 <!-- <input type="checkbox"/>Show Password</br>
 <li class="rq">*Enter numbers only.</li>
 
 <p id="demo"></p> -->
 <li>&nbsp;</li>
-<!-- <li class="submit"><input type="submit" name="submit" value="Submit"  onclick="CheckPassword(document.form1.text1)"/></li> -->
+
 <li>&nbsp;</li>
 </ul>
 
